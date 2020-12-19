@@ -1,11 +1,11 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+let generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
   generatePassword();
-  var password = userPassword.join("");
-  var passwordText = document.querySelector("#password");
+  let password = userPassword.join("");
+  let passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
 
@@ -13,17 +13,17 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 // Create string of letters
-var lower = "abcdefghijklmnopqrstuvwxyz";
-var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let lower = "abcdefghijklmnopqrstuvwxyz";
+let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 // Create string of symbols
-var symbol = "!@#$%&*()^";
+let symbol = "!@#$%&*()^";
 
 // New array to store user password
-var userPassword = [];
+let userPassword = [];
 
 // Function for generating random lower case letter
-const myCharLower = x => {
+const myCharLower = () => {
   let charIndex = Math.floor(Math.random() * lower.length);
   let randomChar = lower.charAt(charIndex);
   userPassword.push(randomChar);
@@ -46,62 +46,32 @@ const myCharSymbol = () => {
 // Function for generating password
 const generatePassword = () => {
   let num = prompt("Enter the desired length of the password, you must choose a number between 8 and 128");
-  for (let i = 0; i < num; i++) {
+
     if (num >= 8 && num <= 128) {
       let lowerCase = confirm("Do you want to include lower case letters?");
+      for (let i = 1; i <= num; i++) {
         if (lowerCase === true) {
           myCharLower();
         }
+      }
       let upperCase = confirm("Do you want to include upper case letters?");
+      for (let i = 1; i <= num; i++) {
         if (upperCase === true) {
-         myCharUpper();
+          myCharUpper();
         }
+      }
       let symbol = confirm("Do you want to include symbols?");
+      for (let i = 1; i <= num; i++) {
         if (symbol === true) {
-         myCharSymbol();
+          myCharSymbol();
         }
-        if (lowerCase === false && upperCase === false && symbol === false) {
+      }
+      if (lowerCase === false && upperCase === false && symbol === false) {
           alert("You didn't choose any options!?");
-        }
+          location.reload();
+      }
     } else {
       alert("Invalid selection, please try again!");
+      location.reload();
     }
-  }
 }
-
-
-
-
-
-
-
-
-
-
-// ["!", "@", "#", "$", "%", "&", "*", "(", ")", "^"];
-
-// ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
-
-
-
-
-// // Function for generating random lower case letter
-// const myCharLower = x => {
-//   let charIndex = Math.floor(Math.random() * myLetters.length);
-//   return myLetters.charAt(charIndex);
-// }
-
-// // Function for generating random upper case letter
-// const myCharUpper = () => {
-//   let charIndex = Math.floor(Math.random() * myLetters.length);
-//   let randomChar = myLetters.charAt(charIndex);
-//   return randomChar.toUpperCase();
-// }
-
-// // Function for generating random symbol
-// const charSymbol = () => {
-//   let charIndex = Math.floor(Math.random() * mySymbols.length);
-//   let char = mySymbols.charAt(charIndex);
-//   return char;
-// }
