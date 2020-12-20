@@ -16,8 +16,11 @@ generateBtn.addEventListener("click", writePassword);
 let lower = "abcdefghijklmnopqrstuvwxyz";
 let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+// Create string of numbers
+let number = "0123456789";
+
 // Create string of symbols
-let symbol = "!@#$%&*()^";
+let symbol = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
 
 // New array to store user password
 let userPassword = [];
@@ -36,8 +39,15 @@ const myCharUpper = () => {
   userPassword.push(randomChar);
 }
 
+// Function for generating random number
+const myNumber = () => {
+  let charIndex = Math.floor(Math.random() * number.length);
+  let randomChar = number.charAt(charIndex);
+  userPassword.push(randomChar);
+}
+
 // Function for generating random symbol
-const myCharSymbol = () => {
+const mySymbol = () => {
   let charIndex = Math.floor(Math.random() * symbol.length);
   let randomChar = symbol.charAt(charIndex);
   userPassword.push(randomChar);
@@ -48,25 +58,31 @@ const generatePassword = () => {
   let num = prompt("Enter the desired length of the password, you must choose a number between 8 and 128");
 
     if (num >= 8 && num <= 128) {
-      let lowerCase = confirm("Do you want to include lower case letters?");
-      for (let i = 1; i <= num; i++) {
-        if (lowerCase === true) {
+      let lowerQuestion = confirm("Do you want to include lower case letters?");
+      for (let i = 1; i <= num / 4; i++) {
+        if (lowerQuestion === true) {
           myCharLower();
         }
       }
-      let upperCase = confirm("Do you want to include upper case letters?");
-      for (let i = 1; i <= num; i++) {
-        if (upperCase === true) {
+      let upperQuestion = confirm("Do you want to include upper case letters?");
+      for (let i = 1; i <= num / 4; i++) {
+        if (upperQuestion === true) {
           myCharUpper();
         }
       }
-      let symbol = confirm("Do you want to include symbols?");
-      for (let i = 1; i <= num; i++) {
-        if (symbol === true) {
-          myCharSymbol();
+      let numberQuestion = confirm("Do you want to include upper case letters?");
+      for (let i = 1; i <= num / 4; i++) {
+        if (numberQuestion === true) {
+          myNumber();
         }
       }
-      if (lowerCase === false && upperCase === false && symbol === false) {
+      let symbolQuestion = confirm("Do you want to include symbols?");
+      for (let i = 1; i <= num / 4; i++) {
+        if (symbolQuestion === true) {
+          mySymbol();
+        }
+      }
+      if (lowerQuestion === false && upperQuestion === false && symbolQuestion === false) {
           alert("You didn't choose any options!?");
           location.reload();
       }
