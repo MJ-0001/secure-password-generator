@@ -70,7 +70,7 @@ const generatePassword = () => {
           myCharUpper();
         }
       }
-      let numberQuestion = confirm("Do you want to include upper case letters?");
+      let numberQuestion = confirm("Do you want to include numbers?");
       for (let i = 1; i <= num / 4; i++) {
         if (numberQuestion === true) {
           myNumber();
